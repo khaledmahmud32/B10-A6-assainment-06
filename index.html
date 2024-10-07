@@ -1,11 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <!-- font awesome cdn  -->
+    <script src="https://kit.fontawesome.com/388056c1b7.js" crossorigin="anonymous"></script>
+
+    <!-- google font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- font awesome cdn  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- daisyUi, tailwind cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        btn_primary: '#0E7A81',
+                    },
+                    fontFamily: {
+                        latoFont: '"Lato", sans-serif;',
+
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    
+
+<body class="latoFont">
+    <header class="container mx-auto">
+        <nav class="my-5">
+            <div class="navbar bg-base-100">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <img src="./assets/logo.webp" alt="">
+                            <span class="text-xl lg:text-3xl font-semibold">Peddy</span>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            <li><a>Home</a></li>
+                            <li><a>Shop</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="hidden lg:block">
+                        <div class="flex items-center gap-2">
+                            <img src="./images/logo.webp" alt="">
+                            <span class="text-xl lg:text-3xl font-semibold">Peddy</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="navbar-center hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1">
+                        <li><a>Home</a></li>
+                        <li><a>Shop</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+                <div class="navbar-end ">
+                    <i class="fa-regular fa-user p-3 border rounded-full"></i>
+                </div>
+            </div>
+        </nav>
+        <!-- banner  -->
+        <div class="text-center my-12 space-y-8">
+            <h4 class="text-2xl text-gray-500 font-semibold">Bringing Families Together ❤️‍🔥 </h4>
+            <h1 class="text-5xl font-bold">Your Path to Adoption Starts Here</h1>
+            <p class="text-gray-500 w-2/4 mx-auto">It is a long established fact that a reader will be distracted by the
+                readable
+                content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+            <div>
+                <a href="#view-more-btn"><button class="btn bg-btn_primary text-white font-semibold text-xl">View
+                        More</button></a>
+            </div>
+            <div class="flex justify-center py-8">
+                <img src="./images/pet.webp" alt="">
+            </div>
+
+        </div>
+    </header>
+
+    <!-- main section  -->
+
+    <main class="container mx-auto text-center my-12">
+        <!-- adopt section  -->
+        <section id="view-more-btn" class="space-y-8">
+            <h3 class="text-3xl font-bold">Adopt Your Best Friend</h3>
+            <p class="text-gray-500 w-2/4 mx-auto pb-6">It is a long established fact that a reader will be distracted
+                by the readable
+                content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+            <!-- categories  -->
+            <div id="category-btn" class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+
+
+            </div>
+
+            <div class="flex items-center justify-between py-6">
+                <p class="font-semibold text-lg">Best Deal For You</p>
+                <button onclick="sortData()" class="btn bg-btn_primary text-white font-semibold text-lg">Sort by
+                    Price</button>
+            </div>
+        </section>
+
+        <!-- categories card  -->
+        <span id="loader" class="loading loading-dots loading-lg"></span>
+        <section id="category-id" class="hidden grid-cols-4 gap-6">
+            <div class="col-span-3">
+                <div id="card-container" class="grid grid-cols-3 gap-6">
+
+                </div>
+            </div>
+            <div class="p-5 border rounded-lg text-start">
+                <div id="selected-card" class="grid grid-cols-2 gap-5">
+
+                </div>
+            </div>
+        </section>
+        <!-- modal  -->
+        <div>
+            <dialog id="my_modal_4" class="modal">
+                <div class="modal-box w-9/11 max-w-2xl p-8">
+                    <div id="modal_content">
+
+
+
+                    </div>
+                    <div class="modal-action">
+                        <form method="dialog" class="w-full">
+
+                            <button class="btn btn-outline btn-success w-full">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+        <i class="mdi mdi-social-distance-2-meters:"></i>
+    </main>
+
+    <footer class="bg-black">
+        <div class="container mx-auto py-[100px] flex text-white justify-between flex-wrap">
+            <div>
+                <div class="flex gap-2 items-center py-2">
+                    <img src="./assets/logo.webp" alt="">
+                    <span class="text-xl lg:text-3xl font-semibold">Peddy</span>
+                </div>
+                <p class="text-gray-400">Location: av. Washington 165, NY CA 54003 <br>
+                    Phone: +31 85 964 47 25 <br>
+                    Email: info@yourdomain.com <br>
+                    Openings hours: 9.00 AM - 5.00 PM</p>
+                <div class="text-4xl space-x-4 mt-6 ">
+                    <i class="fa-brands fa-facebook" style="color: #1397fb;"></i>
+                    <i class="fa-brands fa-x-twitter"></i>
+                    <i class="fa-brands fa-youtube" style="color: #e71818;"></i>
+                    <i class="fa-brands fa-square-instagram" style="color: #f03838;"></i>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-lg font-semibold mb-4">Useful Links</h5>
+                <ul class="space-y-2 text-gray-400">
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Animals</li>
+                    <li>Foundation</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-lg font-semibold mb-4">Drop a Message</h5>
+                <div class="mb-4">
+                    <input type="text" placeholder="Enter your Email"
+                        class="input input-bordered w-full max-w-xs bg-slate-700 text-white" />
+                </div>
+                <button class="btn btn-success w-full max-w-xs">Subscribe</button>
+
+            </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+
+
+    <!-- end  -->
+
+    <script src="./js/main.js"></script>
 </body>
+
 </html>
